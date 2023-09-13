@@ -1,24 +1,19 @@
-# TODO:
-# - build in %build
-# - optflags
-
-%define 	module	pylibacl
-
+%define		module	pylibacl
 Summary:	A Python module for manipulating POSIX.1e ACLs
 Summary(pl.UTF-8):	Moduł języka Python pozwalający na dostęp do ACL standardu POSIX.1e
-Name:		python-%{module}
-Version:	0.2.2
-Release:	5
+Name:		python3-%{module}
+Version:	0.7.0
+Release:	0.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://dl.sourceforge.net/pylibacl/%{module}-%{version}.tar.gz
-# Source0-md5:	5628def6afb4b8c37040fc42f7c59eec
-URL:		http://pylibacl.sourceforge.net/
+Source0:	https://files.pythonhosted.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
+# Source0-md5:	01581ef47c033146a7d06b3014896c59
+URL:		https://pylibacl.k1024.org/
 BuildRequires:	rpmbuild(macros) >= 1.710
 BuildRequires:	acl-devel
-BuildRequires:	python-devel >= 1:2.5
+BuildRequires:	python3-devel >= 1:3.7
 BuildRequires:	rpm-pythonprov
-%pyrequires_eq	python-libs
+%pyrequires_eq	python3-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,17 +25,18 @@ plików.
 
 %prep
 %setup -q -n %{module}-%{version}
+%py3_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py_install
+%py3_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.html BENCHMARK IMPLEMENTATION PLATFORMS README ChangeLog
-%attr(755,root,root) %{py_sitedir}/*.so
-%{py_sitedir}/*.egg-info
+%doc NEWS.md README.md SECURITY.md
+%attr(755,root,root) %{py3_sitedir}/*.so
+%{py3_sitedir}/*.egg-info
