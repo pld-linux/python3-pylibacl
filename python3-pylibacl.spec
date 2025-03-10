@@ -3,7 +3,7 @@ Summary:	A Python module for manipulating POSIX.1e ACLs
 Summary(pl.UTF-8):	Moduł języka Python pozwalający na dostęp do ACL standardu POSIX.1e
 Name:		python3-%{module}
 Version:	0.7.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/%{module}/%{module}-%{version}.tar.gz
